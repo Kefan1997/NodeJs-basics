@@ -8,9 +8,6 @@ const create = async () => {
   const path = getPath(import.meta.url, 'files', 'fresh.txt');
   const pathExists = await doesPathExist(path);
 
-  console.log('path', path)
-  console.log('pathExists', pathExists)
-
   if (pathExists) {
     operationFail();
 
