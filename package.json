@@ -1,0 +1,23 @@
+{
+  "name": "NodeJs-basics",
+  "version": "1.0.0",
+  "description": "NodeJs basics",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "type": "module",
+  "scripts": {
+    "fs:copy": "node src/fs/copy.js",
+    "fs:create": "node src/fs/create.js",
+    "fs:delete": "node src/fs/delete.js",
+    "fs:list": "node src/fs/list.js",
+    "fs:read": "node src/fs/read.js",
+    "fs:rename": "node src/fs/rename.js",
+    "hash": "node src/hash/calcHash.js",
+    "compress": "node src/zip/compress.js",
+    "decompress": "node src/zip/decompress.js"
+  },
+  "repository": "git@github.com:Kefan1997/NodeJs-basics.git",
+  "author": "Oleg Rashchinskiy",
+  "license": "MIT"
+}
