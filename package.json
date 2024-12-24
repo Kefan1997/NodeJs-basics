@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "NodeJs basics",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=18.20.3"
   },
   "type": "module",
   "scripts": {
