@@ -1,29 +1,21 @@
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
 
 import { getPath, operationFail } from '../helpers/index.js';
 
 const calcHash = async () => {
   const pathToFile = getPath(import.meta.url, 'files', 'fileToCalculateHashFor.txt');
 
-  const hash = createHash('sha256');
-  const stream = createReadStream(pathToFile);
+  const hash = createHash('sha256').setEncoding('hex');
+  const readStream = createReadStream(pathToFile);
 
   try {
-    await new Promise((resolve, reject) => {
-      stream.on('data', (data) => {
-        hash.update(data);
-      });
+    await pipeline(readStream, hash);
 
-      stream.on('end', () => {
-        console.log('Hash:', hash.digest('hex'));
-        resolve();
-      });
+    hash.end();
 
-      stream.on('error', (err) => {
-        reject(err);
-      });
-    });
+    process.stdout.write(`Hash: ${hash.read()}\n`);
   } catch (err) {
     if (err.code === 'ENOENT') {
       operationFail();
