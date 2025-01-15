@@ -2,15 +2,14 @@ import { createReadStream, createWriteStream } from 'node:fs';
 import { createGunzip } from 'node:zlib';
 import { pipeline } from 'node:stream/promises';
 
-import { getPath, doesPathExist, operationFail } from '../helpers/index.js';
+import { getPath, doesPathExist } from '../helpers/index.js';
 
 const decompress = async () => {
   const sourcePath = getPath(import.meta.url, 'files', 'archive.gz');
   const destinationPath = getPath(import.meta.url, 'files', 'decompressed.txt');
 
   if (!(await doesPathExist(sourcePath))) {
-    operationFail();
-    return;
+    throw new Error('FS operation failed');
   }
 
   try {
