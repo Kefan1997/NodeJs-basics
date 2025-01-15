@@ -7,7 +7,6 @@ const remove = async () => {
 
   if (!(await doesPathExist(pathToFile))) {
     throw new Error('FS operation failed');
-    return;
   }
 
   try {

@@ -8,7 +8,6 @@ const renameFn = async () => {
 
   if (!(await doesPathExist(oldPath)) || (await doesPathExist(newPath))) {
     throw new Error('FS operation failed');
-    return;
   }
 
   try {

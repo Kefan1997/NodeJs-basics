@@ -7,7 +7,6 @@ const list = async () => {
 
   if (!(await doesPathExist(pathToFolder))) {
     throw new Error('FS operation failed');
-    return;
   }
 
   try {
