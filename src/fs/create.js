@@ -1,26 +1,20 @@
-import { writeFile } from 'node:fs';
+import { writeFile } from 'node:fs/promises';
 
-import { getPath, doesPathExist, operationFail } from '../helpers/index.js';
+import { getPath } from '../helpers/index.js';
 
 const create = async () => {
-  const content = 'I am fresh and young';
+  try {
+    const content = 'I am fresh and young 2';
 
-  const path = getPath(import.meta.url, 'files', 'fresh.txt');
-  const pathExists = await doesPathExist(path);
+    const path = getPath(import.meta.url, 'files', 'fresh.txt');
 
-  if (pathExists) {
-    operationFail();
-
-    return;
-  }
-
-  await writeFile(path, content, (err) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log('File created successfully');
+    await writeFile(path, content, { flag: 'wx' });
+  } catch (err) {
+    if (err.code === 'EEXIST' || err.code === 'ENOENT') {
+      throw new Error('FS operation failed');
     }
-  });
+    throw err;
+  }
 };
 
 await create();
