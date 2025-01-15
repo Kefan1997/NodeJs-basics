@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import { pipeline } from 'node:stream/promises';
 
-import { getPath} from '../helpers/index.js';
+import { getPath } from '../helpers/index.js';
 
 const calcHash = async () => {
   const pathToFile = getPath(import.meta.url, 'files', 'fileToCalculateHashFor.txt');
@@ -21,6 +21,7 @@ const calcHash = async () => {
       throw new Error('FS operation failed');
     } else if (err.code === 'EACCES') {
       console.error('You do not have permission to read this file');
+
       return;
     } else {
       console.error('An error occurred:', err.message);
