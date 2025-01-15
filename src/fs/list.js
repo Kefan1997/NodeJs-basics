@@ -1,12 +1,12 @@
 import { readdir } from 'node:fs/promises';
 
-import { getPath, doesPathExist, operationFail } from '../helpers/index.js';
+import { getPath, doesPathExist, } from '../helpers/index.js';
 
 const list = async () => {
   const pathToFolder = getPath(import.meta.url, 'files');
 
   if (!(await doesPathExist(pathToFolder))) {
-    operationFail();
+    throw new Error('FS operation failed');
     return;
   }
 

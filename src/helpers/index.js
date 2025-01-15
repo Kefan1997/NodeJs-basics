@@ -21,7 +21,3 @@ export const doesPathExist = async (path) => {
     throw err;
   }
 };
-
-export const operationFail = () => {
-  throw new Error('FS operation failed');
-};
